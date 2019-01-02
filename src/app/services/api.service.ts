@@ -20,15 +20,13 @@ export class ApiService {
 
   private _handlePost(service: String, options) {
     const { data } = options;
-    let body = data ? JSON.stringify(data) : {};
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = data ? JSON.stringify(data) : {};
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     // let opts = { headers, 'withCredentials': true };
-    let opts = {headers}
+    const opts = {headers};
     // let headers = new HttpHeaders().set();
     return this._http.post(this.baseUrl + service, body, opts)
-      .pipe(
-        catchError(this._handleError)
-      )
+      .pipe(catchError(this._handleError));
   }
 
   api(service: string, options) {
