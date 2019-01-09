@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoreService } from '../services/core.service';
 
 @Component({
   selector: 'ideal-header',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _coreService: CoreService) {
+  }
 
   ngOnInit() {
   }
-
+  logout() {
+    this._coreService.purgeAuth();
+  }
 }

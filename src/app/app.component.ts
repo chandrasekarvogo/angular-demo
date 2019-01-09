@@ -14,13 +14,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this._coreService.currentUser.subscribe((userData) => {
-      console.log('user Data', userData);
+      if (!userData) {
+        console.log('from app module', userData);
+        this.router.navigate(['/login']);
+       }
       this.currentUser = userData;
     });
     // this.currentUser = this._coreService.currentUser;
     if (!this._coreService.currentUsers) {
       this.router.navigate(['/login']);
-     }
+    }
+
   }
 
 }

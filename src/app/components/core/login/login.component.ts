@@ -47,9 +47,10 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       const data = this.loginForm.value;
       this._coreService.authUser(data);
-      this._coreService.isAuthenticated.  subscribe((v) => {
-        console.log('authenticated ', v);
+      this._coreService.isAuthenticated.  subscribe((value) => {
+        if (value) {
         this.router.navigate([this.returnUrl]);
+      }
       });
     }
   }

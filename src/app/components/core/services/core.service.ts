@@ -10,7 +10,7 @@ import { map ,  distinctUntilChanged } from 'rxjs/operators';
 })
 
 export class CoreService {
-  private currentUserSubject = new BehaviorSubject({});
+  private currentUserSubject = new BehaviorSubject(this._localStorage.get('currentUser'));
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
@@ -22,7 +22,7 @@ export class CoreService {
     private _coreConfig: CoreConfig,
     private _localStorage: LocalStorageService
 
-  ) { }
+  ) {  }
 
   public authUser = (args: any) => {
     const opts = {
@@ -38,9 +38,9 @@ export class CoreService {
 
   purgeAuth() {
     // Remove JWT from local Storage
-    this._localStorage.remove('user');
+    this._localStorage.remove('currentUser');
     // Set current user to an empty object
-    this.currentUserSubject.next({});
+    this.currentUserSubject.next(false);
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
   }
