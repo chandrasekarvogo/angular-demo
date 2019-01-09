@@ -23,10 +23,9 @@ export class LoginComponent implements OnInit {
     private _localStorage: LocalStorageService
     // private alertService: AlertService
   ) {
-    // redirect to home if already logged in
-    // if (this.authenticationService.currentUserValue) { 
-    //     this.router.navigate(['/']);
-    // }
+    if (this._coreService.currentUsers) {
+        this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {
