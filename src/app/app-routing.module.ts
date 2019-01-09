@@ -8,7 +8,6 @@ const routes: Routes = [
       { path: '', component: AuthenticatedComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegistrationComponent },
-  
       // otherwise redirect to home
       { path: '**', redirectTo: '' }
 ];

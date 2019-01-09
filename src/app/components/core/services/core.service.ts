@@ -37,7 +37,7 @@ export class CoreService {
   }
 
   purgeAuth() {
-    // Remove JWT from localstorage
+    // Remove JWT from local Storage
     this._localStorage.remove('user');
     // Set current user to an empty object
     this.currentUserSubject.next({});
@@ -46,8 +46,8 @@ export class CoreService {
   }
 
   setAuth(user) {
-    // Save JWT sent from server in localstorage
-    this._localStorage.set("user", user.token);
+    // Save JWT sent from server in local Storage
+    this._localStorage.set('currentUser', user);
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
@@ -56,9 +56,9 @@ export class CoreService {
 
 
   get currentUsers() {
-    if(this._localStorage.get("currentUser")){
-      return this._localStorage.get("currentUser");
-    }else{
+    if (this._localStorage.get('currentUser')) {
+      return this._localStorage.get('currentUser');
+    } else {
       return false;
     }
   }

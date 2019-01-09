@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { CoreService } from '../services/core.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ReplaySubject } from 'rxjs';
 
 // import { AlertService, AuthenticationService } from '@app/_services';
 
@@ -45,9 +46,12 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     if (this.loginForm.valid) {
       this.loading = true;
-      let data = this.loginForm.value;
-      this._coreService.authUser(data)
-        
+      const data = this.loginForm.value;
+      this._coreService.authUser(data);
+      this._coreService.isAuthenticated.  subscribe((v) => {
+        console.log('authenticated ', v);
+        this.router.navigate([this.returnUrl]);
+      });
     }
   }
 }

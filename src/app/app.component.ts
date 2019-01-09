@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CoreService } from './components/core/services/core.service';
 
 @Component({
@@ -6,17 +7,20 @@ import { CoreService } from './components/core/services/core.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ideal-app';
-  currentUser;
-  constructor(
-    private _coreService: CoreService 
-  ){}
+  currentUser: any;
+  constructor(private _coreService: CoreService, private router: Router) {}
+
   ngOnInit() {
     this._coreService.currentUser.subscribe((userData) => {
-      console.log("userData", userData);
+      console.log('user Data', userData);
       this.currentUser = userData;
-    })
+    });
     // this.currentUser = this._coreService.currentUser;
+    if (!this._coreService.currentUsers) {
+      this.router.navigate(['/login']);
+     }
   }
+
 }

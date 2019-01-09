@@ -7,5 +7,5 @@ export class CoreConfig {
    URLs =  {
        login: '/login',
        signup: 'register'
-   }
+   };
 }

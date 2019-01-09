@@ -11,8 +11,8 @@ export class LocalStorageService {
 
   set(key: string, data: any) {
     if (!window.localStorage) { return; }
-    let type = typeof data;
-    if (type === 'string') {
+
+    if (typeof data === 'string') {
       window.localStorage.setItem(this.localStorageBase + key, data);
     } else {
       window.localStorage.setItem(this.localStorageBase + key, JSON.stringify(data));
