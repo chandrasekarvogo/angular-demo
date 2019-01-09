@@ -12,10 +12,7 @@ export class AuthenticatedComponent implements OnInit {
   constructor(
     private _coreService: CoreService,
     private router: Router,
-  ) { 
-    if(!this._coreService.currentUser){
-      this.router.navigate(['login']);
-    }
+  ) {
   }
   ngOnInit() {
   }

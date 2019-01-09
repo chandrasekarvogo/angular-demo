@@ -11,10 +11,10 @@ import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
 export class CoreService {
   private currentUserSubject = new BehaviorSubject(this._localStorage.get('currentUser'));
-  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
+  public currentUser$ = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
-  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
 
   constructor(
@@ -40,7 +40,7 @@ export class CoreService {
     // Remove JWT from local Storage
     this._localStorage.remove('currentUser');
     // Set current user to an empty object
-    this.currentUserSubject.next(false);
+    this.currentUserSubject.next(this._localStorage.get('currentUser'));
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
   }

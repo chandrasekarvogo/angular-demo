@@ -13,9 +13,8 @@ export class AppComponent implements OnInit {
   constructor(private _coreService: CoreService, private router: Router) {}
 
   ngOnInit() {
-    this._coreService.currentUser.subscribe((userData) => {
+    this._coreService.currentUser$.subscribe((userData) => {
       if (!userData) {
-        console.log('from app module', userData);
         this.router.navigate(['/login']);
        }
       this.currentUser = userData;
